@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+   
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+<html> 
+<head> 
+	  <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    
+	<script> 
+		
+		function dis(val) 
+		{ 
+			document.getElementById("result").value+=val 
+		} 
+		
+	
+		function solve() 
+		{ 
+			let x = document.getElementById("result").value 
+			let y = eval(x) 
+			document.getElementById("result").value = y 
+		} 
+		
+	
+		function clr() 
+		{ 
+			document.getElementById("result").value = "" 
+		} 
+	</script> 
+	<!-- for styling -->
+	<style> 
+		* {
+ 			 box-sizing: border-box;
+			}
+		body{
+			background-color: black;
+		}
+		.title{ 
+		margin-bottom: 10px; 
+		text-align:center; 
+		width: 210px; 
+		color:silver; 
+		border: solid white 2px;
+		font-family: sans-serif;
+		font-size: 20px;
+		} 
+		.all{
+				
+				margin-left: 30%;	
+				margin-top:20%; 
+		}
+
+		input[type="button"] 
+		{ 
+		background-color:silver; 
+		color: black; 
+		border: solid black 2px; 
+		width:100% 
+		} 
+
+		input[type="text"] 
+		{ 
+		background-color:white; 
+		border: solid black 2px; 
+		width:100% 
+		} 
+	</style> 
+</head> 
+<!-- create table -->
+<body><div class="all"> 
+	<div class = title > Calculator</div> 
+	<table border="1"> 
+		<tr> 
+			<td colspan="3"><input type="text" id="result"/></td> 
+			<!-- clr() function will call clr to clear all value -->
+			<td><input type="button" value="c" onclick="clr()"/> </td> 
+		</tr> 
+		<tr> 
+			<!-- create button and assign value to each button -->
+			<!-- dis("1") will call function dis to display value -->
+			<td><input type="button" value="1" onclick="dis('1')"/> </td> 
+			<td><input type="button" value="2" onclick="dis('2')"/> </td> 
+			<td><input type="button" value="3" onclick="dis('3')"/> </td> 
+			<td><input type="button" value="/" onclick="dis('/')"/> </td> 
+		</tr> 
+		<tr> 
+			<td><input type="button" value="4" onclick="dis('4')"/> </td> 
+			<td><input type="button" value="5" onclick="dis('5')"/> </td> 
+			<td><input type="button" value="6" onclick="dis('6')"/> </td> 
+			<td><input type="button" value="-" onclick="dis('-')"/> </td> 
+		</tr> 
+		<tr> 
+			<td><input type="button" value="7" onclick="dis('7')"/> </td> 
+			<td><input type="button" value="8" onclick="dis('8')"/> </td> 
+			<td><input type="button" value="9" onclick="dis('9')"/> </td> 
+			<td><input type="button" value="+" onclick="dis('+')"/> </td> 
+		</tr> 
+		<tr> 
+			<td><input type="button" value="." onclick="dis('.')"/> </td> 
+			<td><input type="button" value="0" onclick="dis('0')"/> </td> 
+			<!-- solve function call function solve to evaluate value -->
+			<td><input type="button" value="=" onclick="solve()"/> </td> 
+			<td><input type="button" value="*" onclick="dis('*')"/> </td> 
+		</tr> 
+	</table> 
+</div>
+</body> 
+</html> 
